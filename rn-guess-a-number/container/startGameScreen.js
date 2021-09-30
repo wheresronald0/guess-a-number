@@ -27,16 +27,28 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginVertical: 10,
   },
+  InputsContainer: {
+    width: 300,
+    maxWidth: "80%",
+    alignItems: "center",
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 7,
+    shadowOpacity: 0.25,
+    //Andriod only
+    elevation: 5,
+    backgroundColor: "white",
+    padding: 20,
+    borderRadius: 15,
+  },
   buttonContainer: {
     flexDirection: "row",
     width: "100%",
     justifyContent: "space-between",
     paddingHorizontal: 25,
-  },
-  InputsContainer: {
-    width: 300,
-    maxWidth: "80%",
-    alignItems: "center",
   },
 });
 
