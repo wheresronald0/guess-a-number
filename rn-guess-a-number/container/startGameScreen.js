@@ -13,6 +13,8 @@ import Colors from "../constants/Colors";
 
 const StartGameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
+  const [confirmed, setConfirmed] = useState(false);
+  const [selectedNumber, setSelectedNumber] = useState();
 
   const numberInputHandle = (inputText) => {
     setEnteredValue(inputText.replace(/[^0-9]/g), "");
@@ -20,7 +22,24 @@ const StartGameScreen = (props) => {
 
   const resetInputHandle = () => {
     setEnteredValue("");
+    setConfirmed(false);
   };
+
+  const confirmInputHandle = () => {
+    const chosenNumber = parseInt(enteredValue);
+    if (chosenNumber === NaN || chosenNumber <= 0 || chosenNumber > 99) {
+      return;
+    }
+    setConfirmed(true);
+    setSelectedNumber(chosenNumber);
+    setEnteredValue("");
+  };
+
+  let confirmedOutput;
+
+  if (confirmed) {
+    confirmedOutput = <Text>Chosen Number: {selectedNumber}</Text>;
+  }
 
   return (
     <TouchableWithoutFeedback
@@ -51,12 +70,13 @@ const StartGameScreen = (props) => {
             <View style={styles.buttons}>
               <Button
                 title="I'm Sure"
-                onPress={() => {}}
+                onPress={confirmInputHandle}
                 color={Colors.primaryColor}
               />
             </View>
           </View>
         </Card>
+        {confirmedOutput}
       </View>
     </TouchableWithoutFeedback>
   );
