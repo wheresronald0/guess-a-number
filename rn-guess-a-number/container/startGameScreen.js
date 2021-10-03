@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
   },
   buttons: {
-    width: "40%",
+    width: "45%",
     //wrap in View so you can style
   },
   numberInput: {
