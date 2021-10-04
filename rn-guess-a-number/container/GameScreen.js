@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, View, Text, Button, Alert } from "react-native";
 import Card from "../components/Card";
 import NumberContainer from "../components/NumberContainer";
@@ -21,6 +21,16 @@ const GameScreen = (props) => {
   // similar to state but mutable and won't rerender when changed
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
+  const [rounds, setRounds] = useState(0);
+
+  const { userChoice, onGameOver } = props; //deconstructed the props so I can just use the vairable name, and useEffect will only re-run if these two vairable change
+
+  //runs at the end of every re-render cycle
+  useEffect(() => {
+    if (currentGuess === props.userChoice) {
+      onGameOver(rounds);
+    }
+  }, [currentGuess, userChoice, onGameOver]);
 
   const nextGuessHandle = (higherOrLower) => {
     if (
@@ -45,6 +55,7 @@ const GameScreen = (props) => {
       currentGuess
     );
     setCurrentGuess(nextNumber);
+    setRounds((curRounds) => curRounds + 1);
   };
 
   return (
