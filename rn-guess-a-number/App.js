@@ -12,14 +12,14 @@ export default function App() {
     setUserNumber(selectedNumber);
   };
 
-  let content = <StartGameScreen onStartGame={startGameHandle} />;
+  let content = <StartGameScreen onStartGame={startGameHandle} />; //getting state from child StartGameScreen
   if (userNumber) {
     content = <GameScreen userChoice={userNumber} />;
   }
 
   return (
     <View style={styles.screen}>
-      <Header title="Guess a Number!" />
+      <Header title="Colleen's Great Guess a Number Game!" />
       {content}
     </View>
   );
