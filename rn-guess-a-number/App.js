@@ -20,13 +20,24 @@ export default function App() {
     setGuessedRounds(numberOfRounds);
   };
 
+  const startNewGameHandle = () => {
+    setGuessedRounds(0);
+    setUserNumber(null);
+  };
+
   let content = <StartGameScreen onStartGame={startGameHandle} />; //getting state from child StartGameScreen
   if (userNumber && guessedRounds <= 0) {
     content = (
       <GameScreen userChoice={userNumber} onGameOver={gameOverHandle} />
     );
   } else if (guessedRounds > 0) {
-    content = <GameOver />;
+    content = (
+      <GameOver
+        guessedRounds={guessedRounds}
+        userNumber={userNumber}
+        startNewGame={startNewGameHandle}
+      />
+    );
   }
 
   return (
