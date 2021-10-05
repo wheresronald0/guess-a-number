@@ -1,12 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, Image } from "react-native";
 import DefaultStyles from "../constants/Default-Styles";
+import Colors from "../constants/Colors";
 
 const GameOver = (props) => {
   return (
     <View style={styles.screen}>
       <Text style={{ ...DefaultStyles.titleText, ...styles.text }}>
-        The computer guessed your number!
+        Your phone guessed your number!
       </Text>
 
       <Image
@@ -17,12 +18,13 @@ const GameOver = (props) => {
         style={styles.image}
         resizeMode="contain"
       />
-      <Text style={DefaultStyles.bodyText}>
-        Number of Rounds: {props.guessedRounds}
+      <Text style={{ ...DefaultStyles.bodyText, ...styles.text }}>
+        The phone needed
+        <Text style={styles.highlightText}> {props.guessedRounds} </Text> rounds
+        to guess your magic number of
+        <Text style={styles.highlightText}> {props.userNumber}</Text>
       </Text>
-      <Text style={DefaultStyles.bodyText}>
-        The magic number was: {props.userNumber}
-      </Text>
+
       <Button title="Start New Game" onPress={props.startNewGame} />
     </View>
   );
@@ -35,11 +37,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    marginVertical: 10,
+    marginVertical: 20,
+    margin: 35,
+    textAlign: "center",
   },
   image: {
     width: "100%",
     height: 300,
+  },
+  highlightText: {
+    color: Colors.primaryColor,
+    fontSize: 16,
+    fontFamily: "open-sansBold",
   },
 });
 

@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     fontSize: 18,
+    color: "white",
   },
 });
 

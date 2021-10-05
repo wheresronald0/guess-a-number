@@ -109,7 +109,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    marginVertical: 10,
+    marginTop: 35,
+    marginBottom: 60,
   },
   InputsContainer: {
     width: 300,
