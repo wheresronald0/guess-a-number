@@ -13,6 +13,7 @@ import InputField from "../components/Input";
 import Colors from "../constants/Colors";
 import NumberContainer from "../components/NumberContainer";
 import DefaultStyles from "../constants/Default-Styles";
+import CustomButton from "../components/CustomButton";
 
 const StartGameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -50,10 +51,9 @@ const StartGameScreen = (props) => {
       <Card style={styles.summaryContainer}>
         <Text style={DefaultStyles.bodyText}>You selected</Text>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <Button
-          title="Start Game"
-          onPress={() => props.onStartGame(selectedNumber)}
-        />
+        <CustomButton onClick={() => props.onStartGame(selectedNumber)}>
+          Start Game
+        </CustomButton>
       </Card>
     );
   }
@@ -69,7 +69,7 @@ const StartGameScreen = (props) => {
           Start a New Game
         </Text>
         <Card style={styles.InputsContainer}>
-          <Text style={DefaultStyles.bodyText}>Select a Number</Text>
+          <Text style={DefaultStyles.bodyText}>Pick Your Number</Text>
           <InputField
             style={styles.numberInput}
             blurOnSubmit //for Andriod keyboard close

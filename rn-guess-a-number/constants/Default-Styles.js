@@ -7,7 +7,7 @@ export default StyleSheet.create({
   },
   titleText: {
     fontFamily: "open-sansBold",
-    color: "black",
+    color: "#696969",
     fontSize: 18,
   },
 });

@@ -1,8 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { StyleSheet, View, Text, Button, Alert } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+
 import Card from "../components/Card";
 import NumberContainer from "../components/NumberContainer";
 import DefaultStyles from "../constants/Default-Styles";
+import CustomButton from "../components/CustomButton";
 
 const generateRandomNumber = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -39,9 +42,9 @@ const GameScreen = (props) => {
       (higherOrLower === "higher" && currentGuess > props.userChoice)
     ) {
       Alert.alert(
-        "You're a damn liar!",
-        "You know that's not the right answer",
-        [{ text: "Why don't you try that again", style: "cancel" }]
+        "Don't be a liar...",
+        "you know that's not the right answer",
+        [{ text: "Let's try that again", style: "cancel" }]
       );
       return;
     }
@@ -61,11 +64,15 @@ const GameScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-      <Text style={DefaultStyles.bodyText}>Opponent's Guess</Text>
+      <Text style={DefaultStyles.titleText}>Opponent's Guess</Text>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card style={styles.buttonContainer}>
-        <Button title="Lower" onPress={nextGuessHandle.bind(this, "lower")} />
-        <Button title="Higher" onPress={nextGuessHandle.bind(this, "higher")} />
+        <CustomButton onClick={nextGuessHandle.bind(this, "lower")}>
+          <Ionicons name="md-remove" size={24} color="white" />
+        </CustomButton>
+        <CustomButton onClick={nextGuessHandle.bind(this, "higher")}>
+          <Ionicons name="md-add" size={24} color="white" />
+        </CustomButton>
       </Card>
     </View>
   );

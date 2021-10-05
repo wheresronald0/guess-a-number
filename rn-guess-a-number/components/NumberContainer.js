@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
     borderColor: Colors.accentColor,
     padding: 10,
     borderRadius: 10,
-    marginVertical: 10,
+    marginVertical: 20,
     alignItems: "center",
     justifyContent: "center",
   },
   text: {
     color: Colors.accentColor,
-    fontSize: 22,
+    fontSize: 20,
   },
 });
 export default NumberContainer;

@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Button, Image } from "react-native";
 import DefaultStyles from "../constants/Default-Styles";
 import Colors from "../constants/Colors";
+import CustomButton from "../components/CustomButton";
 
 const GameOver = (props) => {
   return (
@@ -25,7 +26,7 @@ const GameOver = (props) => {
         <Text style={styles.highlightText}> {props.userNumber}</Text>
       </Text>
 
-      <Button title="Start New Game" onPress={props.startNewGame} />
+      <CustomButton onClick={props.startNewGame}>Start New Game</CustomButton>
     </View>
   );
 };
