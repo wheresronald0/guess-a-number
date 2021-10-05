@@ -12,6 +12,7 @@ import Card from "../components/Card";
 import InputField from "../components/Input";
 import Colors from "../constants/Colors";
 import NumberContainer from "../components/NumberContainer";
+import DefaultStyles from "../constants/Default-Styles";
 
 const StartGameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -47,7 +48,7 @@ const StartGameScreen = (props) => {
   if (confirmed) {
     confirmedOutput = (
       <Card style={styles.summaryContainer}>
-        <Text>You selected</Text>
+        <Text style={DefaultStyles.bodyText}>You selected</Text>
         <NumberContainer>{selectedNumber}</NumberContainer>
         <Button
           title="Start Game"
@@ -64,9 +65,11 @@ const StartGameScreen = (props) => {
       }}
     >
       <View style={styles.screen}>
-        <Text style={styles.title}>Start a New Game</Text>
+        <Text style={{ ...DefaultStyles.titleText, ...styles.title }}>
+          Start a New Game
+        </Text>
         <Card style={styles.InputsContainer}>
-          <Text>Select a Number</Text>
+          <Text style={DefaultStyles.bodyText}>Select a Number</Text>
           <InputField
             style={styles.numberInput}
             blurOnSubmit //for Andriod keyboard close
