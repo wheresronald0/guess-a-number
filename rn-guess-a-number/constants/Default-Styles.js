@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   bodyText: {
     fontFamily: "open-sans",
-    color: "black",
+    color: "#696969",
   },
   titleText: {
     fontFamily: "open-sansBold",

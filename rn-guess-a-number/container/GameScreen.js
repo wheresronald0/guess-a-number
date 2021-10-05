@@ -81,13 +81,27 @@ const GameScreen = (props) => {
           <Ionicons name="md-add" size={24} color="white" />
         </CustomButton>
       </Card>
-      <ScrollView>
-        {pastGuesses.map((guess) => (
-          <View key={guess}>
-            <Text>{guess}</Text>
-          </View>
-        ))}
-      </ScrollView>
+      <View style={styles.list}>
+        <ScrollView>
+          {pastGuesses.map((guess, index) => (
+            <View
+              key={guess}
+              //style={{ ...DefaultStyles.bodyText, ...styles.listItems }}
+              style={styles.listItems}
+            >
+              <Text style={DefaultStyles.bodyText}>
+                Round #
+                <Text style={DefaultStyles.bodyText}>
+                  {pastGuesses.length - index}
+                </Text>
+              </Text>
+              <Text style={DefaultStyles.bodyText}>
+                Guess is <Text style={DefaultStyles.bodyText}>{guess}</Text>
+              </Text>
+            </View>
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 };
@@ -95,7 +109,7 @@ const GameScreen = (props) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    padding: 100,
+    padding: 50,
     alignItems: "center",
   },
   buttonContainer: {
@@ -104,6 +118,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 20,
     width: 300,
+  },
+  listItems: {
+    borderColor: "#696969",
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 15,
+    marginVertical: 10,
+    backgroundColor: "white",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  list: {
+    flex: 1, //allow Andriod to use ScrollView
+    width: "100%",
+    marginTop: 30,
   },
 });
 
