@@ -1,5 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { StyleSheet, View, Text, Button, Alert } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  Alert,
+  ScrollView,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import Card from "../components/Card";
@@ -19,20 +26,19 @@ const generateRandomNumber = (min, max, exclude) => {
 };
 
 const GameScreen = (props) => {
-  const [currentGuess, setCurrentGuess] = useState(
-    generateRandomNumber(1, 100, props.userChoice)
-  );
+  const initialGuess = generateRandomNumber(1, 100, props.userChoice);
+  const [currentGuess, setCurrentGuess] = useState(initialGuess);
   // similar to state but mutable and won't rerender when changed
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
-  const [rounds, setRounds] = useState(0);
+  const [pastGuesses, setPastGuesses] = useState([initialGuess]);
 
   const { userChoice, onGameOver } = props; //deconstructed the props so I can just use the vairable name, and useEffect will only re-run if these two vairable change
 
   //runs at the end of every re-render cycle
   useEffect(() => {
     if (currentGuess === props.userChoice) {
-      onGameOver(rounds);
+      onGameOver(pastGuesses.length);
     }
   }, [currentGuess, userChoice, onGameOver]);
 
@@ -51,7 +57,7 @@ const GameScreen = (props) => {
     if (higherOrLower === "lower") {
       currentHigh.current = currentGuess; // .current is the property on the currentHigh obj that store the value
     } else {
-      currentLow.current = currentGuess;
+      currentLow.current = currentGuess + 1;
     }
     const nextNumber = generateRandomNumber(
       currentLow.current,
@@ -59,7 +65,8 @@ const GameScreen = (props) => {
       currentGuess
     );
     setCurrentGuess(nextNumber);
-    setRounds((curRounds) => curRounds + 1);
+    //setRounds((curRounds) => curRounds + 1);
+    setPastGuesses((currentPastguesses) => [nextNumber, ...currentPastguesses]);
   };
 
   return (
@@ -74,6 +81,13 @@ const GameScreen = (props) => {
           <Ionicons name="md-add" size={24} color="white" />
         </CustomButton>
       </Card>
+      <ScrollView>
+        {pastGuesses.map((guess) => (
+          <View key={guess}>
+            <Text>{guess}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 };
