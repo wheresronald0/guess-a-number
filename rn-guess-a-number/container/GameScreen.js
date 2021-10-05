@@ -39,7 +39,7 @@ const GameScreen = (props) => {
       (higherOrLower === "higher" && currentGuess > props.userChoice)
     ) {
       Alert.alert(
-        "You're a damn lyer!",
+        "You're a damn liar!",
         "You know that's not the right answer",
         [{ text: "Why don't you try that again", style: "cancel" }]
       );

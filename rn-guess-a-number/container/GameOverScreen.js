@@ -1,16 +1,22 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, Image } from "react-native";
 import DefaultStyles from "../constants/Default-Styles";
 
 const GameOver = (props) => {
   return (
     <View style={styles.screen}>
       <Text style={{ ...DefaultStyles.titleText, ...styles.text }}>
-        The computer, guessed your number!
+        The computer guessed your number!
       </Text>
-      <Text style={{ ...DefaultStyles.titleText, ...styles.text }}>
-        The Game is Over!
-      </Text>
+
+      <Image
+        source={require("../assets/game_over.jpg")}
+        //spource={{
+        //uri: "https://www.colourbox.com/preview/8080571-game-over-stamp.jpg",
+        //}}
+        style={styles.image}
+        resizeMode="contain"
+      />
       <Text style={DefaultStyles.bodyText}>
         Number of Rounds: {props.guessedRounds}
       </Text>
@@ -30,6 +36,10 @@ const styles = StyleSheet.create({
   },
   text: {
     marginVertical: 10,
+  },
+  image: {
+    width: "100%",
+    height: 300,
   },
 });
 
